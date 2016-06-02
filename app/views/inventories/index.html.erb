@@ -1,5 +1,5 @@
 
-<h1>I am the static page</h1>
+<h1>Order Management System</h1>
 
 <ul>
 <% @inventories.each do |i| %>
@@ -10,8 +10,9 @@
     <%= link_to "Delete", inventory_path(i), :method => :delete %>
     <%= link_to "Show", inventory_path(i) %>
   </li>
-</ul>
 <% end %>
+</ul>
+
 
 <%= link_to "new", new_inventory_path %>
 

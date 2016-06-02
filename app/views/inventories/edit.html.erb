@@ -1,0 +1,5 @@
+<%= form_for @inventory, :url => inventory_path(@inventory), :method => :patch do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+
+  <%= f.submit "Update" %>
+<% end %>
