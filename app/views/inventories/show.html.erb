@@ -47,4 +47,8 @@
     </tr>
 
   </table>
+  <% @page_num = "1" %>
+  <% @page_num = @current_page["page"] if @current_page .present? %>
+  <p><%= link_to 'Back to index', inventories_path + "?page=" + @page_num , :class => "btn btn-info" %> </p>
+
 </div>
