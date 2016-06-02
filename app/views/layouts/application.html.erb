@@ -9,9 +9,18 @@
 <body>
   
   <div class="container">
-    <p style="color: green"><%= flash[:notice] %></p>
-    <p style="color: red"><%= flash[:alert] %></p>
-  </div>
+
+    <% if flash[:notice].present? %>
+      <div class="alert alert-success"> 
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <% if flash[:alert].present? %>
+      <div class="alert alert-danger ">
+        <%= flash[:alert] %></div>
+      </div>
+    <% end %>
 
   <%= yield %>
 

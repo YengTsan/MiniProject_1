@@ -1,42 +1,50 @@
-<p>Inventories list</p>
+<div class="container">
+  <h1>Inventories list</h1>
 
-<table>
-  <tr>
-    <th>
-      "Item"
-    </th>
-    <th>
-      "Description"   
-    </th>
-    <th>
-      "Price"
-    </th>
-    <th>
-      "Stock"  
-    </th>
-    <th>
-      "Lack"  
-    </th>
-  </tr>
+  <table class="table table-striped">
+    <tr>
+      <th>
+        "Item"
+      </th>
+      <th>
+        "Description"   
+      </th>
+      <th>
+        "Price"
+      </th>
+      <th>
+        "Stock"  
+      </th>
+      <th>
+        "Lack"  
+      </th>
+      <th>
+        "Value"  
+      </th>
+    </tr>
 
-  <tr>
-    <td>
-      <%= @inventory.item %>
-    </td>
-    <td>
-      <%= @inventory.description %>
-    </td>
-    <td>
-      <%= @inventory.price %>
-    </td>
-    <td>
-      <%= @inventory.stock %>
-    </td>
-    <td>
-      <% @lack = "no" %>
-      <% @lack = "Yes" if @inventory.lack != nil %>
-      <%= @lack %>
-    </td>
-  </tr>
+    <tr>
+      <td>
+        <%= @inventory.item %>
+      </td>
+      <td>
+        <%= @inventory.description %>
+      </td>
+      <td>
+        <%= @inventory.price %>
+      </td>
+      <td>
+        <%= @inventory.stock %>
+      </td>
+      <td>
+        <% @lack = "no" %>
+        <% @lack = "Yes" if @inventory.lack != nil %>
+        <%= @lack %>
+      </td>
+      <td>
+        $ <%= @inventory.price * @inventory.stock %>
+      </td>
+    </tr>
 
-</table>
+  </table>
+</div>
