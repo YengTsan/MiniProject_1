@@ -1,0 +1,23 @@
+<%= f.label :item, "Item" %>
+<%= f.text_field :item %>
+
+<%= f.label :description, "Description" %>
+<%= f.text_area :description %>
+
+<%= f.label :price, "Price" %>
+<%= f.number_field :price %>
+
+<%= f.label :stock, "Stock" %>
+<%= f.number_field :stock %>
+
+<%= f.label :lack, "Lack" %>
+<%= f.check_box :lack %>
+
+<% if @inventory.errors.any? %>
+      <ul>
+      <% @inventory.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+<% end %>
+

@@ -1,2 +1,17 @@
 
-<p>I am the static page</p>
+<h1>I am the static page</h1>
+
+<ul>
+<% @inventories.each do |i| %>
+  <li>
+    <%= i.item %>
+    <%= link_to "Show", inventory_path(i) %>
+    <%= link_to "Edit", edit_inventory_path(i) %>
+    <%= link_to "Delete", inventory_path(i), :method => :delete %>
+    <%= link_to "Show", inventory_path(i) %>
+  </li>
+</ul>
+<% end %>
+
+<%= link_to "new", new_inventory_path %>
+
