@@ -16,7 +16,7 @@ class InventoriesController < ApplicationController
   end
 
   def show
-    @Inventory = Inventory.find(params[:id])
+    @inventory = Inventory.find(params[:id])
   end
 
 private

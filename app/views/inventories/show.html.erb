@@ -1,0 +1,42 @@
+<p>Inventories list</p>
+
+<table>
+  <tr>
+    <th>
+      "Item"
+    </th>
+    <th>
+      "Description"   
+    </th>
+    <th>
+      "Price"
+    </th>
+    <th>
+      "Stock"  
+    </th>
+    <th>
+      "Lack"  
+    </th>
+  </tr>
+
+  <tr>
+    <td>
+      <%= @inventory.item %>
+    </td>
+    <td>
+      <%= @inventory.description %>
+    </td>
+    <td>
+      <%= @inventory.price %>
+    </td>
+    <td>
+      <%= @inventory.stock %>
+    </td>
+    <td>
+      <% @lack = "no" %>
+      <% @lack = "Yes" if @inventory.lack != nil %>
+      <%= @lack %>
+    </td>
+  </tr>
+
+</table>
