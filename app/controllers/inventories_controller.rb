@@ -12,11 +12,12 @@ class InventoriesController < ApplicationController
   def create
     @inventory = Inventory.new(inventory_param)
     if @inventory.save
+      flash[:notice] = "event was successfully created" 
       redirect_to :action => :index
     else
       render :action => :new
     end
-      flash[:notice] = "event was successfully created"
+
   end
 
   def show
@@ -26,8 +27,10 @@ class InventoriesController < ApplicationController
   end
 
   def update
+    @dumming = Inventory.new
+    @dumming = @inventory.dup
     if @inventory.update(inventory_param)
-      flash[:notice] = "event was successfully updated"
+      flash[:notice] = "event was successfully updated" if !check_changing(@dumming, @inventory)
       redirect_to :action => :index
     else
       render :action => :edit
@@ -48,6 +51,14 @@ private
 
   def set_inventory
     @inventory = Inventory.find(params[:id])
+  end
+
+  def check_changing(a,b)
+    a.item == b.item &&
+    a.description == b.description &&
+    a.price == b.price &&
+    a.stock == b.stock &&
+    a.lack == b.lack
   end
 
 end
