@@ -1,18 +1,30 @@
+<div class="container">
+  
+  <h1>Order Management System</h1>
 
-<h1>Order Management System</h1>
+  <table>
+    <% @inventories.each do |i| %>
+      <tr>
+        <td>
+          <%= i.item %>
+        </td>
+      </tr>
 
-<ul>
-<% @inventories.each do |i| %>
-  <li>
-    <%= i.item %>
-    <%= link_to "Show", inventory_path(i) %>
-    <%= link_to "Edit", edit_inventory_path(i) %>
-    <%= link_to "Delete", inventory_path(i), :method => :delete %>
-    <%= link_to "Show", inventory_path(i) %>
-  </li>
-<% end %>
-</ul>
+      <tr>
+        <td>
+        <%= link_to "Show", inventory_path(i) %>
+        <%= link_to "Edit", edit_inventory_path(i) %>
+        <%= link_to "Delete", inventory_path(i), :method => :delete %>
+        <%= link_to "Show", inventory_path(i) %>
+        </td>
+      </tr>
+      </li>
+    <% end %>
+  </table>
 
+  <br>
+  <%= paginate @inventories %>
 
-<%= link_to "new", new_inventory_path %>
-
+  <br>
+  <%= link_to "new", new_inventory_path, :class => "btn" %>
+</div>
