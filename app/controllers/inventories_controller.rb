@@ -1,8 +1,10 @@
 class InventoriesController < ApplicationController
-  before_action :set_inventory, :only => [ :show, :edit, :update, :destroy]
+  before_action :set_inventory, :only => [:show, :edit, :update, :destroy]
 
   def index
     @inventories = Inventory.page(params[:page]).per(5)
+    @inventory = Inventory.new
+    flash[:current_page] = current_page_num
   end
 
   def new
@@ -12,18 +14,18 @@ class InventoriesController < ApplicationController
   def create
     @inventory = Inventory.new(inventory_param)
     if @inventory.save
-      flash[:notice] = "Inventory was successfully created" 
-      redirect_to :action => :index
+      flash[:notice] = "Inventory was successfully created"
+      redirect_to_current_page
     else
       render :action => :new
     end
-
   end
 
   def show
   end
 
   def edit
+    flash[:current_page] = flash[:current_page]
   end
 
   def update
@@ -34,22 +36,30 @@ class InventoriesController < ApplicationController
       else
         flash[:notice] = "Nothing has been changed"
       end 
-      redirect_to :action => :index
+      redirect_to_current_page
     else
       render :action => :edit
     end
   end
 
   def destroy
+    @current_page = flash[:current_page]
     @inventory.destroy
-    flash[:alert] = "Inventory was successfully delete"
-    redirect_to :action => :index
+    redirect_to_current_page
   end
 
 private
 
   def inventory_param
     params.require(:inventory).permit(:item, :description, :price, :stock, :lack)
+  end
+
+  def current_page_num
+    params.permit(:page)
+  end
+
+  def set_pgn
+    @current_page = "11"
   end
 
   def set_inventory
@@ -62,6 +72,11 @@ private
     a.price == b.price &&
     a.stock == b.stock &&
     a.lack == b.lack)
+  end
+
+  def redirect_to_current_page
+      @current_page = flash[:current_page]
+      redirect_to (inventories_path + "?page=" + @current_page["page"])
   end
 
 end
