@@ -7,9 +7,16 @@ class InventoriesController < ApplicationController
     flash[:current_page] = current_page_num
   end
 
-  def new
-    @inventory = Inventory.new
+  def edit
+    @current_page = flash[:current_page]
+    flash[:current_page] = flash[:current_page]
+    @page_num = @current_page["page"]
+    @inventories = Inventory.page(params[:page]).per(5)
+    raise
+
+    render :action => :index
   end
+
 
   def create
     @inventory = Inventory.new(inventory_param)
@@ -22,10 +29,12 @@ class InventoriesController < ApplicationController
   end
 
   def show
+    @current_page = flash[:current_page]
   end
 
-  def edit
+  def show_back
     flash[:current_page] = flash[:current_page]
+    redirect_to_current_page
   end
 
   def update
@@ -38,6 +47,7 @@ class InventoriesController < ApplicationController
       end 
       redirect_to_current_page
     else
+      @current_page = flash[:current_page]
       render :action => :edit
     end
   end
@@ -58,10 +68,6 @@ private
     params.permit(:page)
   end
 
-  def set_pgn
-    @current_page = "11"
-  end
-
   def set_inventory
     @inventory = Inventory.find(params[:id])
   end
@@ -75,8 +81,9 @@ private
   end
 
   def redirect_to_current_page
-      @current_page = flash[:current_page]
-      redirect_to (inventories_path + "?page=" + @current_page["page"])
+    @page_num = "1"
+    @page_num = flash[:current_page]["page"] if flash[:current_page].present?
+    redirect_to (inventories_path + "?page=" + @page_num)
   end
 
 end

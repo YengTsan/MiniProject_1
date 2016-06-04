@@ -27,14 +27,26 @@
     </div>
 
     <div class="col-12">
-      <%= form_for @inventory, :url => inventories_path do |f| %>
-        <%= render :partial => 'form', :locals => { :f => f } %>
+      <% if !@inventory_old.present? %>
+        <%= form_for @inventory, :url => inventories_path do |f| %>
+          <%= render :partial => 'form', :locals => { :f => f } %>
 
-        <%= f.submit "Create" %>
+          <%= f.submit "Create" %>
+        <% end %>
+      <% end %>
 
+      <% if @inventory_old.present?%>
+         <%= form_for @inventory_old, :url => inventories_path, :method => :patch do |f| %>
+          <%= render :partial => 'form', :locals => { :f => f } %>
+
+          <%= f.submit "Update" %>
+        <% end %>
       <% end %>
     </div>
+    
+    <p>
+      <%= link_to "New inventory", new_inventory_path(@inventory),:class => "btn btn-primary" %>
+    </p>
+
   </div>
-
-
 </div>
