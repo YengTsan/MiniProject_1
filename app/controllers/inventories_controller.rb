@@ -10,11 +10,6 @@ class InventoriesController < ApplicationController
   def edit
     @current_page = flash[:current_page]
     flash[:current_page] = flash[:current_page]
-    @page_num = @current_page["page"]
-    @inventories = Inventory.page(params[:page]).per(5)
-    raise
-
-    render :action => :index
   end
 
 
