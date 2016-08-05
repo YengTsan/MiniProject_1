@@ -1,28 +1,15 @@
-== README
+== 在AlphaCamp第一個小專案
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* 一個「xx管理系統」
+* 系統中資料必須填入時有驗證
+* 支援CRUD
+* RESTful
+* CUD之後顯示成功訊息
+* 良好的commit習慣
 
-Things you may want to cover:
+== 透過此專案，我...
 
-* Ruby version
+* 熟悉CRUD （此專案做了兩次）
+* 了解Controller、View、Route的關係
+* 體驗RESTful的設計風格
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
